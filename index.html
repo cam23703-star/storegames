@@ -1,0 +1,1321 @@
+
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<!-- Mirrored from shophama.site/taigame/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Apr 2026 11:56:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAMA GAMER</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="../hama.png" type="image/jpg">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:        #07091a;
+            --bg2:       #0d1025;
+            --surface:   rgba(255,255,255,0.055);
+            --surface2:  rgba(255,255,255,0.09);
+            --border:    rgba(255,255,255,0.10);
+            --border-h:  rgba(99,102,241,0.6);
+            --text:      #f1f5f9;
+            --muted:     #64748b;
+            --accent:    #6366f1;
+            --accent2:   #a78bfa;
+            --cyan:      #22d3ee;
+            --green:     #4ade80;
+            --red:       #f87171;
+            --yellow:    #fbbf24;
+            --r:         18px;
+            --shadow-card: 0 4px 24px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.06) inset;
+            --shadow-hover: 0 12px 40px rgba(99,102,241,0.28), 0 0 0 1px rgba(99,102,241,0.35);
+            --glow-green: 0 0 14px rgba(74,222,128,0.6);
+            --glow-blue:  0 0 14px rgba(99,102,241,0.6);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            background-image:
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,0.12) 0%, transparent 70%);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        /* ── PARTICLES ── */
+        #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .particle {
+            position: absolute; border-radius: 50%; opacity: 0;
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+            10%  { opacity: .7; }
+            90%  { opacity: .15; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* ── BG GLOW BLOBS ── */
+        .blob { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+        .blob-1 { width: 500px; height: 500px; background: rgba(99,102,241,.16); top: -140px; left: -120px; }
+        .blob-2 { width: 400px; height: 400px; background: rgba(167,139,250,.13); bottom: -60px; right: -100px; }
+        .blob-3 { width: 300px; height: 300px; background: rgba(34,211,238,.09); top: 38%; left: 28%; }
+
+        /* ── HEADER ── */
+        header {
+            position: sticky; top: 0; z-index: 200;
+            background: rgba(7,9,26,0.75);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            height: 58px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 18px; font-weight: 900; letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #818cf8, #a78bfa, #22d3ee);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(99,102,241,.5));
+        }
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .live-badge {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 10px; font-weight: 700; color: var(--green);
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .live-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--green);
+            box-shadow: var(--glow-green);
+            animation: blink 1.4s ease infinite;
+        }
+        @keyframes blink { 0%,100%{ opacity:1; } 50%{ opacity:0.25; } }
+
+        /* ── WRAPPER ── */
+        .wrapper { max-width: 460px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 1; }
+
+        /* ── PROFILE ── */
+        .profile { display: flex; flex-direction: column; align-items: center; padding-top: 48px; }
+
+        .avatar-shell { position: relative; width: 112px; height: 112px; }
+        .avatar-ring {
+            position: absolute; inset: -4px; border-radius: 50%;
+            background: conic-gradient(from 0deg, #6366f1, #a78bfa, #22d3ee, #4ade80, #6366f1);
+            animation: spinRing 5s linear infinite;
+            filter: blur(1px);
+        }
+        @keyframes spinRing { to { transform: rotate(360deg); } }
+        .avatar-inner {
+            position: relative; z-index: 1; width: 100%; height: 100%;
+            border-radius: 50%; background: var(--bg); padding: 4px;
+        }
+        .avatar-inner img {
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            box-shadow: 0 0 0 2px rgba(99,102,241,.2);
+        }
+        .avatar-status {
+            position: absolute; bottom: 6px; right: 6px; z-index: 2;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: var(--green); border: 2.5px solid var(--bg);
+            box-shadow: var(--glow-green); animation: blink 1.4s ease infinite;
+        }
+
+        .profile-tag {
+            margin-top: 20px; font-size: 10px; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--accent2);
+            background: rgba(99,102,241,.1); padding: 4px 16px; border-radius: 50px;
+            border: 1px solid rgba(99,102,241,.25);
+            box-shadow: 0 2px 12px rgba(99,102,241,.15);
+        }
+        .profile-name {
+            margin-top: 10px; font-size: 28px; font-weight: 900;
+            background: linear-gradient(135deg, #fff 20%, #c4b5fd 60%, #818cf8);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-align: center;
+            filter: drop-shadow(0 2px 8px rgba(139,92,246,.3));
+        }
+        .profile-desc {
+            margin-top: 8px; font-size: 12.5px; color: var(--muted);
+            text-align: center; font-style: italic; line-height: 1.6;
+            max-width: 320px;
+        }
+
+        /* ── SOCIAL ROW ── */
+        .social-row { display: flex; gap: 10px; margin-top: 22px; }
+        .btn-social {
+            width: 48px; height: 48px; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--surface); border: 1px solid var(--border);
+            font-size: 18px; color: var(--muted); text-decoration: none;
+            transition: all .3s ease; position: relative; overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        .btn-social::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            opacity: 0; transition: opacity .3s;
+        }
+        .btn-social:hover::before { opacity: 1; }
+        .btn-social:hover {
+            color: white; transform: translateY(-4px) scale(1.05);
+            border-color: transparent; box-shadow: 0 10px 28px rgba(99,102,241,.4);
+        }
+        .btn-social i, .btn-social span { position: relative; z-index: 1; }
+
+        /* ── GLASS CARD BASE ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-card);
+            transition: all .35s cubic-bezier(.175,.885,.32,1.275);
+        }
+        .card:hover {
+            border-color: rgba(99,102,241,0.45);
+            background: var(--surface2);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ── LINKS ── */
+        .links-section { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+        .link-card { padding: 15px 18px; display: flex; align-items: center; justify-content: space-between; }
+        .link-left { display: flex; align-items: center; gap: 14px; }
+        .link-icon {
+            width: 46px; height: 46px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 19px; flex-shrink: 0;
+        }
+        .li-blue  { background: rgba(99,102,241,.18); color: #818cf8; box-shadow: 0 0 18px rgba(99,102,241,.2); }
+        .li-teal  { background: rgba(34,211,238,.14); color: #22d3ee; box-shadow: 0 0 18px rgba(34,211,238,.18); }
+        .link-title { font-weight: 700; font-size: 14px; color: var(--text); }
+        .link-sub   { font-size: 10px; font-weight: 600; color: var(--accent2); margin-top: 2px; letter-spacing: .3px; }
+        .btn-arrow {
+            width: 38px; height: 38px; border-radius: 12px;
+            background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent2); font-size: 13px; text-decoration: none;
+            transition: all .25s; flex-shrink: 0;
+        }
+        .btn-arrow:hover { background: var(--accent); color: white; border-color: transparent; box-shadow: var(--glow-blue); }
+
+        /* ── SECTION TITLE ── */
+        .section-title {
+            font-size: 11px; font-weight: 800; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--muted);
+            display: flex; align-items: center; gap: 12px;
+            margin: 38px 0 16px;
+        }
+        .section-title::before, .section-title::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1));
+        }
+        .section-title::after { background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent); }
+        .section-title .st-icon {
+            width: 30px; height: 30px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+        }
+        .st-yellow { background: rgba(251,191,36,.15); color: var(--yellow); box-shadow: 0 0 12px rgba(251,191,36,.2); }
+        .st-purple { background: rgba(99,102,241,.15); color: var(--accent2); box-shadow: 0 0 12px rgba(99,102,241,.2); }
+
+        /* ── DOWNLOADS GRID ── */
+        .downloads-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .dl-card {
+            padding: 14px 13px; display: flex; flex-direction: column; gap: 11px;
+            position: relative; overflow: hidden;
+        }
+        .dl-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px;
+            border-radius: 2px 2px 0 0;
+        }
+        .dl-card::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 50%);
+            border-radius: inherit;
+        }
+        .dl-card.ac-blue::before   { background: linear-gradient(90deg, #6366f1, #22d3ee); box-shadow: 0 0 12px rgba(99,102,241,.5); }
+        .dl-card.ac-purple::before { background: linear-gradient(90deg, #a855f7, #ec4899); box-shadow: 0 0 12px rgba(168,85,247,.5); }
+        .dl-card.ac-red::before    { background: linear-gradient(90deg, #f87171, #fb923c); box-shadow: 0 0 12px rgba(248,113,113,.5); }
+        .dl-card.ac-green::before  { background: linear-gradient(90deg, #4ade80, #22d3ee); box-shadow: 0 0 12px rgba(74,222,128,.5); }
+        .dl-card.ac-orange::before { background: linear-gradient(90deg, #fb923c, #fbbf24); box-shadow: 0 0 12px rgba(251,146,60,.5); }
+
+        .dl-top { display: flex; align-items: flex-start; justify-content: space-between; }
+        .dl-img-wrap { position: relative; }
+        .dl-img-wrap img {
+            width: 50px; height: 50px; border-radius: 14px; object-fit: cover;
+            border: 1.5px solid rgba(255,255,255,.12);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+        }
+        .dl-badge {
+            position: absolute; top: -5px; left: -5px;
+            font-size: 7.5px; font-weight: 800; padding: 2px 6px;
+            border-radius: 6px; color: white; letter-spacing: .3px;
+        }
+        .badge-blue   { background: #6366f1; box-shadow: 0 2px 8px rgba(99,102,241,.5); }
+        .badge-purple { background: #a855f7; box-shadow: 0 2px 8px rgba(168,85,247,.5); }
+        .badge-red    { background: #f87171; box-shadow: 0 2px 8px rgba(248,113,113,.5); }
+        .badge-green  { background: #4ade80; color: #0f172a; box-shadow: 0 2px 8px rgba(74,222,128,.5); }
+        .badge-orange { background: #fb923c; box-shadow: 0 2px 8px rgba(251,146,60,.5); }
+
+        .btn-download {
+            width: 36px; height: 36px; border-radius: 11px;
+            background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; color: var(--accent2); text-decoration: none;
+            transition: all .25s; flex-shrink: 0;
+        }
+        .btn-download:hover { background: var(--accent); color: white; border-color: transparent; transform: rotate(-8deg) scale(1.12); box-shadow: var(--glow-blue); }
+
+        .dl-title { font-size: 10.5px; font-weight: 800; color: var(--text); text-transform: uppercase; line-height: 1.35; letter-spacing: .3px; }
+
+        .dl-meta { display: flex; flex-direction: column; gap: 5px; }
+        .dl-tag {
+            font-size: 9px; font-weight: 700; padding: 3px 8px;
+            border-radius: 20px; display: flex; align-items: center; gap: 4px; width: fit-content;
+        }
+        .tag-green  { background: rgba(74,222,128,.1);  color: #4ade80;  border: 1px solid rgba(74,222,128,.25); }
+        .tag-red    { background: rgba(248,113,113,.1); color: #f87171;  border: 1px solid rgba(248,113,113,.25); }
+        .tag-blue   { background: rgba(99,102,241,.1);  color: #818cf8;  border: 1px solid rgba(99,102,241,.25); }
+        .tag-orange { background: rgba(251,146,60,.1);  color: #fb923c;  border: 1px solid rgba(251,146,60,.25); }
+        .dl-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; animation: blink 1.5s infinite; }
+        .dot-green  { background: #4ade80; box-shadow: 0 0 6px #4ade80; }
+        .dot-red    { background: #f87171; box-shadow: 0 0 6px #f87171; }
+        .dot-blue   { background: #818cf8; box-shadow: 0 0 6px #818cf8; }
+        .dot-orange { background: #fb923c; box-shadow: 0 0 6px #fb923c; }
+
+        /* ── AUTO KEYS ── */
+        .keys-section { display: flex; flex-direction: column; gap: 14px; }
+        .key-card {
+            border-radius: var(--r); padding: 2px;
+            position: relative; overflow: hidden;
+            box-shadow: 0 6px 28px rgba(0,0,0,0.45);
+            transition: transform .35s cubic-bezier(.175,.885,.32,1.275), box-shadow .35s;
+        }
+        .key-card:hover { transform: translateY(-4px); }
+        .key-card.g-blue-purple { background: linear-gradient(135deg, #6366f1, #a855f7); }
+        .key-card.g-blue-purple:hover { box-shadow: 0 12px 36px rgba(99,102,241,.45); }
+        .key-card.g-green-blue  { background: linear-gradient(135deg, #4ade80, #22d3ee); }
+        .key-card.g-green-blue:hover  { box-shadow: 0 12px 36px rgba(74,222,128,.4); }
+        .key-card.g-red-pink    { background: linear-gradient(135deg, #f87171, #ec4899); }
+        .key-card.g-red-pink:hover    { box-shadow: 0 12px 36px rgba(248,113,113,.4); }
+        .key-card.g-yellow-orange { background: linear-gradient(135deg, #fbbf24, #fb923c); }
+        .key-card.g-yellow-orange:hover { box-shadow: 0 12px 36px rgba(251,191,36,.4); }
+        .key-card.g-purple-pink { background: linear-gradient(135deg, #a855f7, #ec4899); }
+        .key-card.g-purple-pink:hover { box-shadow: 0 12px 36px rgba(168,85,247,.45); }
+        .key-card.g-blue-green  { background: linear-gradient(135deg, #6366f1, #4ade80); }
+        .key-card.g-blue-green:hover  { box-shadow: 0 12px 36px rgba(99,102,241,.4); }
+        .key-card.g-default     { background: linear-gradient(135deg, #6366f1, #22d3ee); }
+        .key-card.g-default:hover     { box-shadow: 0 12px 36px rgba(99,102,241,.45); }
+
+        .key-inner {
+            background: rgba(7,9,26,.93);
+            border-radius: calc(var(--r) - 2px);
+            padding: 16px 18px;
+            display: flex; align-items: center; justify-content: space-between; gap: 14px;
+            position: relative; overflow: hidden;
+        }
+        .key-inner::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .key-inner::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.05) 50%, transparent 100%);
+            transform: translateX(-100%); transition: transform .6s ease;
+        }
+        .key-card:hover .key-inner::after { transform: translateX(100%); }
+
+        .key-img-wrap { position: relative; flex-shrink: 0; }
+        .key-img-wrap img {
+            width: 60px; height: 60px; border-radius: 16px; object-fit: cover;
+            border: 1.5px solid rgba(255,255,255,.18);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.55);
+            transition: transform .4s;
+        }
+        .key-card:hover .key-img-wrap img { transform: scale(1.08); }
+        .key-badge {
+            position: absolute; top: -7px; right: -7px;
+            width: 23px; height: 23px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; color: #0f172a;
+            background: var(--yellow);
+            box-shadow: 0 2px 10px rgba(251,191,36,.6);
+            animation: bounce 2s ease infinite;
+        }
+        @keyframes bounce { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-4px); } }
+
+        .key-info { flex: 1; min-width: 0; }
+        .key-title {
+            font-size: 13px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: .4px; line-height: 1.4;
+        }
+        .key-clock { display: flex; align-items: center; gap: 7px; margin-top: 8px; }
+        .dot-ping { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: blink 1.4s infinite; box-shadow: var(--glow-green); flex-shrink: 0; }
+        .live-clock { font-size: 10px; font-weight: 600; color: var(--muted); letter-spacing: .5px; }
+
+        .btn-key {
+            width: 46px; height: 46px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; color: white; text-decoration: none; flex-shrink: 0;
+            transition: transform .5s cubic-bezier(.175,.885,.32,1.275);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+        }
+        .key-card:hover .btn-key { transform: rotate(360deg) scale(1.1); }
+        .key-card.g-blue-purple .btn-key, .key-card.g-default .btn-key { background: rgba(99,102,241,.45); }
+        .key-card.g-green-blue .btn-key  { background: rgba(74,222,128,.35); }
+        .key-card.g-red-pink .btn-key    { background: rgba(248,113,113,.45); }
+        .key-card.g-yellow-orange .btn-key { background: rgba(251,191,36,.35); }
+        .key-card.g-purple-pink .btn-key  { background: rgba(168,85,247,.45); }
+        .key-card.g-blue-green .btn-key   { background: rgba(99,102,241,.45); }
+
+        /* ── FOOTER ── */
+        .bottom-center { display: flex; flex-direction: column; align-items: center; margin-top: 60px; gap: 22px; }
+        .faq-btn {
+            display: flex; align-items: center; gap: 10px;
+            padding: 13px 28px; border-radius: 16px;
+            background: var(--surface); border: 1px solid var(--border);
+            color: var(--text); text-decoration: none; font-weight: 700; font-size: 13px;
+            transition: all .3s; box-shadow: var(--shadow-card);
+        }
+        .faq-btn:hover { background: rgba(99,102,241,.14); border-color: rgba(99,102,241,0.5); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(99,102,241,.2); }
+        .faq-btn i { color: var(--accent2); }
+        .footer-text {
+            font-size: 10px; font-weight: 700; color: var(--muted);
+            letter-spacing: 3px; text-transform: uppercase; text-align: center;
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(99,102,241,.4); border-radius: 4px; }
+
+        /* ── BTN-KEY-PICK (replaces download icon) ── */
+        .dl-btn-group { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+        .btn-key-pick {
+            width: 36px; height: 36px; border-radius: 11px;
+            background: rgba(99,102,241,.13); border: 1px solid rgba(99,102,241,.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; color: var(--accent2); cursor: pointer;
+            transition: all .25s; flex-shrink: 0;
+        }
+        .btn-key-pick:hover { background: var(--accent); color: white; border-color: transparent; box-shadow: var(--glow-blue); }
+
+        /* ── MODAL OVERLAY ── */
+        .modal-overlay {
+            position: fixed; inset: 0; z-index: 900;
+            background: rgba(4,5,15,0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: flex; align-items: flex-end; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity .3s ease;
+        }
+        .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+        /* ── MODAL SHEET ── */
+        .modal-sheet {
+            width: 100%; max-width: 480px;
+            background: linear-gradient(180deg, #0d1130 0%, #07091a 100%);
+            border-top: 1px solid rgba(255,255,255,0.10);
+            border-radius: 26px 26px 0 0;
+            padding: 0 0 44px;
+            transform: translateY(100%); transition: transform .4s cubic-bezier(.22,1,.36,1);
+            box-shadow: 0 -20px 60px rgba(0,0,0,0.7);
+            max-height: 92vh; overflow-y: auto;
+        }
+        .modal-overlay.open .modal-sheet { transform: translateY(0); }
+        .modal-handle { width: 40px; height: 4px; border-radius: 4px; background: rgba(255,255,255,.18); margin: 14px auto 0; }
+
+        .modal-game-header {
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px 20px 14px;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+        .modal-game-img { width: 56px; height: 56px; border-radius: 16px; object-fit: cover; border: 1.5px solid rgba(255,255,255,.15); box-shadow: 0 4px 16px rgba(0,0,0,0.5); flex-shrink: 0; }
+        .modal-game-info { flex: 1; min-width: 0; }
+        .modal-game-name { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; color: var(--text); }
+        .modal-game-sub  { font-size: 10px; color: var(--muted); margin-top: 3px; }
+        .modal-close {
+            width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+            background: var(--surface); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--muted); font-size: 12px; cursor: pointer; transition: all .2s;
+        }
+        .modal-close:hover { background: var(--surface2); color: var(--text); }
+
+        .modal-section-title {
+            font-size: 9.5px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--muted); padding: 16px 20px 10px;
+        }
+
+        .plan-list { display: flex; flex-direction: column; gap: 10px; padding: 0 16px; }
+        .plan-card {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 16px; padding: 13px 15px;
+            cursor: pointer; transition: all .25s; position: relative; overflow: hidden;
+        }
+        .plan-card:hover, .plan-card.selected { border-color: var(--plan-color, #6366f1); background: rgba(99,102,241,.07); }
+        .plan-card.selected { box-shadow: 0 0 18px rgba(99,102,241,.18); }
+        .plan-icon {
+            width: 42px; height: 42px; border-radius: 13px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 17px;
+            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+        }
+        .plan-info { flex: 1; min-width: 0; }
+        .plan-name { font-size: 12.5px; font-weight: 800; color: var(--text); }
+        .plan-duration { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
+        .plan-price-col { text-align: right; flex-shrink: 0; }
+        .plan-price { font-size: 16px; font-weight: 900; }
+        .plan-old   { font-size: 10px; color: var(--muted); text-decoration: line-through; }
+        .plan-badge-pill {
+            position: absolute; top: 10px; right: 15px;
+            font-size: 7.5px; font-weight: 800; padding: 2px 7px; border-radius: 20px;
+            color: white; letter-spacing: .5px;
+        }
+
+        .modal-buy-wrap { padding: 18px 16px 0; }
+        .modal-buy-btn {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 14px; border-radius: 16px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white; font-size: 14px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: .5px; border: none; cursor: pointer;
+            box-shadow: 0 6px 28px rgba(99,102,241,.45);
+            transition: all .3s cubic-bezier(.175,.885,.32,1.275);
+        }
+        .modal-buy-btn:hover { transform: translateY(-2px) scale(1.01); box-shadow: 0 12px 36px rgba(99,102,241,.55); }
+        .modal-buy-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+        .modal-note { text-align: center; font-size: 10px; color: var(--muted); margin-top: 10px; padding: 0 20px; line-height: 1.6; }
+
+        /* ── REVEAL ANIMATIONS ── */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(32px) scale(0.97);
+            transition:
+                opacity .65s cubic-bezier(.22,1,.36,1),
+                transform .65s cubic-bezier(.22,1,.36,1);
+        }
+        [data-reveal='left'] {
+            transform: translateX(-36px) scale(0.97);
+        }
+        [data-reveal='right'] {
+            transform: translateX(36px) scale(0.97);
+        }
+        [data-reveal='scale'] {
+            transform: scale(0.82);
+        }
+        [data-reveal='down'] {
+            transform: translateY(-28px) scale(0.97);
+        }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: none;
+        }
+        /* Fast shimmer sweep on card reveal */
+        @keyframes shimmerReveal {
+            0%   { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .dl-card.revealed::after, .key-inner.revealed-inner::before {
+            animation: shimmerReveal .8s ease forwards;
+        }
+        /* Typing cursor for profile name */
+        @keyframes cursorBlink {
+            0%,100% { border-color: transparent; }
+            50% { border-color: var(--accent2); }
+        }
+    </style>
+</head>
+<body onload="startClock()">
+
+    <!-- BG DECORATION -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div id="particles"></div>
+
+    <header>
+        <span class="logo">HAMA MODS</span>
+        <div class="header-right">
+            <div class="live-badge">
+                <div class="live-dot"></div>
+                ONLINE
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <!-- PROFILE -->
+        <div class="profile">
+            <div class="avatar-shell" data-reveal="scale" data-delay="0">
+                <div class="avatar-ring"></div>
+                <div class="avatar-inner">
+                    <img src="../hama.png" alt="avatar">
+                </div>
+                <div class="avatar-status"></div>
+            </div>
+
+            <div class="profile-tag" data-reveal data-delay="120">Welcome To</div>
+            <h1 class="profile-name" data-reveal data-delay="220">
+                HAMA GAMER                <i class="fa-solid fa-circle-check" style="font-size:20px;color:#6366f1;-webkit-text-fill-color:#6366f1"></i>
+            </h1>
+            <p class="profile-desc" data-reveal data-delay="340">Hỗ Trợ Mod Game Uy Tín Số 1.</p>
+
+            <div class="social-row">
+                <a href="https://t.me/hamahackfifai" class="btn-social" style="color:#22d3ee" data-reveal="scale" data-delay="450">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+                <a href="https://zalo.me/g/babpjb398" class="btn-social" data-reveal="scale" data-delay="530">
+                    <span style="font-weight:800;font-size:12px;font-style:italic">Zalo</span>
+                </a>
+                <a href="https://www.youtube.com/@HamaModz05" class="btn-social" style="color:#f87171" data-reveal="scale" data-delay="610">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- QUICK LINK -->
+        <div class="links-section">
+            <div class="card link-card" data-reveal data-delay="700">
+                <div class="link-left">
+                    <div class="link-icon li-blue"><i class="fa-solid fa-shop"></i></div>
+                    <div>
+                        <p class="link-title">Web Mua Key Tự Động</p>
+                        <p class="link-sub">shophama.site</p>
+                    </div>
+                </div>
+                <a href="../client/index.html" class="btn-arrow">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- AUTO KEYS -->
+        <div class="section-title" data-reveal data-delay="0">
+            <span class="st-icon st-purple"><i class="fa-solid fa-key"></i></span>
+            Auto Get Key
+            <span class="dot-ping" style="flex-shrink:0"></span>
+        </div>
+        <div class="keys-section">
+                        <div class="key-card g-default" data-reveal data-delay="120">
+                <div class="key-inner">
+                    <div class="key-img-wrap">
+                        <img src="../hama.png" alt="">
+                        <div class="key-badge"><i class="fa-solid fa-key"></i></div>
+                    </div>
+                    <div class="key-info">
+                        <p class="key-title" style="background:linear-gradient(90deg,#4f46e5,#b91c1c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+                            LẤY KEY GAME MIỄN PHÍ                        </p>
+                        <div class="key-clock">
+                            <div class="dot-ping"></div>
+                            <p class="live-clock">Loading...</p>
+                        </div>
+                    </div>
+                    <a href="https://linkday.xyz/note/rjTosdCJ48" class="btn-key" target="_blank">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </a>
+                </div>
+            </div>
+                    </div>
+
+        <!-- DOWNLOADS -->
+        <div class="section-title" data-reveal data-delay="0">
+            <span class="st-icon st-yellow"><i class="fa-solid fa-bolt"></i></span>
+            Link Tải Game
+        </div>
+        <div class="downloads-list">
+                        <div class="card dl-card ac-blue" data-reveal="left" data-delay="120">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../fcglobal.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(0, 'HACK FC GLOBAL JAVA','../fcglobal.png','HACK FC GLOBAL ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/38q13skee05e4n8/FC_MOBILE_GLOBAL_JAVA.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK FC GLOBAL JAVA</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        HACK FC GLOBAL ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="right" data-delay="220">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../fc.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(1, 'HACK FC GRANGER LITE','../fc.png','NẾU VĂNG THÌ TẢI BẢN JAVA')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/kr6qpyi89bsu7mo/FC_VN_GRANGER_LITE.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK FC GRANGER LITE</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        NẾU VĂNG THÌ TẢI BẢN JAVA                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="left" data-delay="320">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../fc.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(2, 'HACK FC VN JAVA','../fc.png','HACK FC VN ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/yv96o9hrscorr6k/FC_MOBILE_VN_JAVA.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK FC VN JAVA</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        HACK FC VN ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="right" data-delay="420">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../8ball.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(3, 'HACK 8 BALL POOL AIMX','../8ball.png','HACK 8 BALL POOL ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/k5qgkk6845726ns/8_Ball_Pool_AimX.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK 8 BALL POOL AIMX</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        HACK 8 BALL POOL ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-purple" data-reveal="left" data-delay="520">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="https://nxlmods.io.vn/lq.jpg" alt="">
+                        <span class="dl-badge badge-purple">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(4, 'HACK LIÊN QUÂN CHẤP TỐ V4.1','https://nxlmods.io.vn/lq.jpg','LIÊN QUÂN CHẤP TỐ ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/njpexkrg1oy6hxn/CH%25E1%25BA%25A4P_T%25E1%25BB%2590_V4.1_-_FIX_CRASH.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK LIÊN QUÂN CHẤP TỐ V4.1</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        LIÊN QUÂN CHẤP TỐ ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-purple" data-reveal="right" data-delay="620">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="https://nxlmods.io.vn/lq.jpg" alt="">
+                        <span class="dl-badge badge-purple">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(5, 'HACK MAP LIÊN QUÂN V8','https://nxlmods.io.vn/lq.jpg','HACK MAP LIÊN QUÂN ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/4bnu8kt8tf53my3/Map_Li%25C3%25AAn_Qu%25C3%25A2n_V8.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK MAP LIÊN QUÂN V8</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        HACK MAP LIÊN QUÂN ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="left" data-delay="720">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../pubg.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(6, 'HACK PUBG MOBILE','../pubg.png','HACK PUBG MOBILE ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://t.me/hamamodz/624508/639446" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK PUBG MOBILE</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        HACK PUBG MOBILE ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="right" data-delay="820">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../mg3.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(7, 'HACK PUBG MG PRO LOADER','../mg3.png','HACK PUBG MOBILE ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://zufile.com/download/Q10o6QZsSl" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK PUBG MG PRO LOADER</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        HACK PUBG MOBILE ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="left" data-delay="920">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../brmod.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(8, 'BR MODS','../brmod.png','KEY VỪA LÀ TÀI KHOẢN VÀ MẬT KHẨU')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/d017g0z0lpvf63j/BR_MODS_5.0.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">BR MODS</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-red">
+                        <span class="dl-dot dot-red"></span>
+                        BẢO TRÌ                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-fire" style="font-size:8px"></i>
+                        KEY VỪA LÀ TÀI KHOẢN VÀ MẬT KHẨU                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="right" data-delay="1020">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../xtff3.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(9, 'XTFF HAX','../xtff3.png','HACK FREE FIRE XTFF ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/2z3ll6jmn2jd4ny/XTFF-UPDATE_01.3.2026_.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">XTFF HAX</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-red">
+                        <span class="dl-dot dot-red"></span>
+                        BẢO TRÌ                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-fire" style="font-size:8px"></i>
+                        HACK FREE FIRE XTFF ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="left" data-delay="1120">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../CFM.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(10, 'HACK CFM','../CFM.png','Crossfire Legends ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://t.me/hamamodz/623978/624024" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">HACK CFM</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        Crossfire Legends ANDROID                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="right" data-delay="1220">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../netwing.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(11, 'FAKE LAG NETWING 3.0','../netwing.png','CHỌN CHẾ ĐỘ CHẶN DOWNLOAD ĐỂ ỔN ĐỊNH NHẤT')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/ablkucni8e2ocxd/NetWing_3.0.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">FAKE LAG NETWING 3.0</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        CHỌN CHẾ ĐỘ CHẶN DOWNLOAD ĐỂ ỔN ĐỊNH NHẤT                    </span>
+                </div>
+            </div>
+                        <div class="card dl-card ac-blue" data-reveal="left" data-delay="1320">
+                <div class="dl-top">
+                    <div class="dl-img-wrap">
+                        <img src="../fakekag.png" alt="">
+                        <span class="dl-badge badge-blue">NEW</span>
+                    </div>
+                    <div class="dl-btn-group">
+                        <button class="btn-key-pick"
+                            onclick="openKeyModal(12, 'FAKE LAG VÔ HẠN','../fakekag.png','FAKE LAG. GHOST.NGƯNG ĐỌNG ANDROID')"
+                            title="Mua Key">
+                            <i class="fa-solid fa-key"></i>
+                        </button>
+                        <a href="https://www.mediafire.com/file/0sx0rs5ag4dj02p/Hama_Ping_V%25C3%25B4_H%25E1%25BA%25A1n.apk/file" class="btn-download" target="_blank" title="Tải xuống">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="dl-title">FAKE LAG VÔ HẠN</p>
+                <div class="dl-meta">
+                    <span class="dl-tag tag-green">
+                        <span class="dl-dot dot-green"></span>
+                        ONLINE                    </span>
+                    <span class="dl-tag tag-blue">
+                        <i class="fa-solid fa-shield-virus" style="font-size:8px"></i>
+                        FAKE LAG. GHOST.NGƯNG ĐỌNG ANDROID                    </span>
+                </div>
+            </div>
+                    </div>
+
+        <!-- FOOTER -->
+        <div class="bottom-center">
+            <a href="#" class="faq-btn" data-reveal="scale" data-delay="0">
+                <i class="fa-solid fa-circle-question"></i>
+                FAQ — Hỏi Đáp
+            </a>
+            <p class="footer-text" data-reveal data-delay="150">© DEVELOPED BY HAMA MODS 2026</p>
+        </div>
+
+    </div>
+
+    <!-- ══════════ KEY PICKER MODAL ══════════ -->
+    <div class="modal-overlay" id="keyModalOverlay" onclick="handleKeyOverlay(event)">
+        <div class="modal-sheet" id="keyModalSheet">
+            <div class="modal-handle"></div>
+            <div class="modal-game-header">
+                <img src="#" alt="" class="modal-game-img" id="keyModalImg">
+                <div class="modal-game-info">
+                    <p class="modal-game-name" id="keyModalName"></p>
+                    <p class="modal-game-sub"  id="keyModalSub"></p>
+                </div>
+                <div class="modal-close" onclick="closeKeyModal()"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <p class="modal-section-title">— CHỌN GÓI KEY —</p>
+            <div class="plan-list" id="keyPlanList">
+                <!-- JS renders plans dynamically per game -->
+            </div>
+            <div class="modal-buy-wrap">
+                <button class="modal-buy-btn" id="keyBuyBtn" onclick="doKeyBuy()" disabled>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="keyBuyText">Chọn gói để mua</span>
+                </button>
+                <p class="modal-note">Kích hoạt ngay sau thanh toán · Hỗ trợ 24/7 · Bảo đảm hoàn tiền</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* CLOCK */
+        function startClock() {
+            const clocks = document.querySelectorAll('.live-clock');
+            function tick() {
+                const now = new Date();
+                const t = now.toLocaleTimeString('vi-VN', { hour12: false });
+                const d = now.toLocaleDateString('vi-VN');
+                clocks.forEach(el => el.textContent = `🕒 ${t} · ${d}`);
+            }
+            tick();
+            setInterval(tick, 1000);
+        }
+
+        /* PARTICLES */
+        (function() {
+            const container = document.getElementById('particles');
+            const colors = ['#6366f1','#a78bfa','#22d3ee','#4ade80','#f472b6'];
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 4 + 2;
+                p.style.cssText = `
+                    width:${size}px; height:${size}px;
+                    left:${Math.random()*100}%;
+                    background:${colors[Math.floor(Math.random()*colors.length)]};
+                    animation-duration:${Math.random()*15+10}s;
+                    animation-delay:${Math.random()*10}s;
+                    filter:blur(${size > 4 ? 1 : 0}px);
+                `;
+                container.appendChild(p);
+            }
+        })();
+
+        /* ── REVEAL ON SCROLL ── */
+        (function() {
+            // Group elements by their closest scroll container section
+            // so stagger resets per section
+            const els = document.querySelectorAll('[data-reveal]');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const el = entry.target;
+                    const delay = parseInt(el.dataset.delay || 0);
+                    setTimeout(() => {
+                        el.classList.add('revealed');
+                    }, delay);
+                    observer.unobserve(el);
+                });
+            }, {
+                threshold: 0.08,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            els.forEach(el => observer.observe(el));
+
+            // Also handle elements already in viewport on load
+            // (profile section) with a slight cascade
+            setTimeout(() => {
+                const inView = [...els].filter(el => {
+                    const r = el.getBoundingClientRect();
+                    return r.top < window.innerHeight;
+                });
+                inView.forEach(el => {
+                    const delay = parseInt(el.dataset.delay || 0);
+                    setTimeout(() => el.classList.add('revealed'), delay);
+                    observer.unobserve(el);
+                });
+            }, 80);
+        })();
+
+        /* ── KEY MODAL (per-game plans from admin) ── */
+        const PER_GAME_PLANS = [[{"plan_id":"plan_69c89733f16f4","game_key":"game_1","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69ca93054bc74","game_key":"game_1","label":"7 NGÀY","duration":"7 ngày","price":"80,000đ","price_raw":80000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69ca9311e130d","game_key":"game_1","label":"30 NGÀY","duration":"30 ngày","price":"180,000đ","price_raw":180000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69dc56fd37227","game_key":"game_2","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69dc5727b0bb3","game_key":"game_2","label":"7 NGÀY","duration":"7 ngày","price":"80,000đ","price_raw":80000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69dc573948d5b","game_key":"game_2","label":"30 NGÀY","duration":"30 ngày","price":"200,000đ","price_raw":200000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69ca9283c09d3","game_key":"game_8","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69ca9293cbfff","game_key":"game_8","label":"7 NGÀY","duration":"7 ngày","price":"80,000đ","price_raw":80000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69ca92a56e4a1","game_key":"game_8","label":"30 NGÀY","duration":"30 ngày","price":"180,000đ","price_raw":180000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69d07d7c7e998","game_key":"game_5","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69d07d8d0af2b","game_key":"game_5","label":"7 NGÀY","duration":"7 ngày","price":"80,000đ","price_raw":80000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69d07d9b858f8","game_key":"game_5","label":"30 NGÀY","duration":"30 ngày","price":"140,000đ","price_raw":140000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69c89d42b7bc1","game_key":"game_6","label":"1 NGÀY","duration":"1 ngày","price":"20,000đ","price_raw":20000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69c89d64da8f2","game_key":"game_6","label":"7 NGÀY","duration":"7 ngày","price":"110,000đ","price_raw":110000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69c89d798ccc7","game_key":"game_6","label":"30 NGÀY","duration":"30 ngày","price":"200,000đ","price_raw":200000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69c9463f308c8","game_key":"game_7","label":"1 NGÀY","duration":"1 ngày","price":"10,000đ","price_raw":10000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69c94658a27fd","game_key":"game_7","label":"7 NGÀY","duration":"7 ngày","price":"70,000đ","price_raw":70000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69c9466c3bb03","game_key":"game_7","label":"30 NGÀY","duration":"30 ngày","price":"150,000đ","price_raw":150000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69ca952b206ea","game_key":"game_3","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69ca954cc174c","game_key":"game_3","label":"7 NGÀY","duration":"7 ngày","price":"110,000đ","price_raw":110000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69ca955b5d864","game_key":"game_3","label":"30 NGÀY","duration":"30 ngày","price":"200,000đ","price_raw":200000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69d487411f444","game_key":"game_12","label":"1 NGÀY","duration":"1 ngày","price":"20,000đ","price_raw":20000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69d487527be86","game_key":"game_12","label":"7 NGÀY","duration":"7 ngày","price":"120,000đ","price_raw":120000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69d4876095676","game_key":"game_12","label":"30 NGÀY","duration":"30 ngày","price":"200,000đ","price_raw":200000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69d07f3015bb7","game_key":"game_9","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69d07f446253d","game_key":"game_9","label":"7 NGÀY","duration":"7 ngày","price":"80,000đ","price_raw":80000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69d07f525a3cc","game_key":"game_9","label":"30 NGÀY","duration":"30 ngày","price":"150,000đ","price_raw":150000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69d07fcf0042b","game_key":"game_10","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69d07fde9bdba","game_key":"game_10","label":"7 NGÀY","duration":"7 ngày","price":"80,000đ","price_raw":80000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69d07fef52151","game_key":"game_10","label":"30 NGÀY","duration":"30 ngày","price":"150,000đ","price_raw":150000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[{"plan_id":"plan_69c89af2ea4fc","game_key":"game_4","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69c89b10559fe","game_key":"game_4","label":"7 NGÀY","duration":"7 ngày","price":"70,000đ","price_raw":70000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69c89b2b5df40","game_key":"game_4","label":"30 NGÀY","duration":"30 ngày","price":"150,000đ","price_raw":150000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}],[],[{"plan_id":"plan_69d37aa126f1a","game_key":"game_13","label":"1 NGÀY","duration":"1 ngày","price":"15,000đ","price_raw":15000,"old":"","badge":"HOT","color":"#818cf8","icon":"fa-calendar-week"},{"plan_id":"plan_69d37ab64c6fc","game_key":"game_13","label":"7NGÀY","duration":"7 ngày","price":"80,000đ","price_raw":80000,"old":"","badge":"SALE","color":"#4ade80","icon":"fa-calendar-days"},{"plan_id":"plan_69d37ac9dcf23","game_key":"game_13","label":"30NGÀY","duration":"30 ngày","price":"150,000đ","price_raw":150000,"old":"","badge":"VIP","color":"#fbbf24","icon":"fa-gem"}]];
+        const PAYMENT_CFG    = {"bank_code":"ACB","account_no":"21409201","account_name":"NGUYEN VAN QUY","prefix":"HAMAGR","bank_name":"ACB"};
+        let _selPlan = -1, _curGame = '', _curPlans = [];
+        let _pollTimer = null, _cdTimer = null, _orderId = '';
+
+        function openKeyModal(gameIdx, title, img, note) {
+            _curGame  = title; _selPlan = -1;
+            _curPlans = PER_GAME_PLANS[gameIdx] || [];
+            document.getElementById('keyModalName').textContent = title;
+            document.getElementById('keyModalSub').textContent  = note || 'Chọn gói key bên dưới';
+            document.getElementById('keyModalImg').src = img;
+            document.getElementById('keyBuyText').textContent = 'Chọn gói để mua';
+            document.getElementById('keyBuyBtn').disabled = true;
+            renderKeyPlans();
+            document.getElementById('keyModalOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function renderKeyPlans() {
+            const list = document.getElementById('keyPlanList');
+            if (!_curPlans.length) {
+                list.innerHTML = '<p style="text-align:center;color:#475569;padding:20px;font-size:12px"><i class="fa-solid fa-box-open" style="display:block;font-size:24px;margin-bottom:8px"></i>Game này chưa có gói key</p>';
+                return;
+            }
+            list.innerHTML = _curPlans.map((p, idx) => `
+                <div class="plan-card" style="--plan-color:${p.color}" onclick="selectKeyPlan(${idx})">
+                    <div class="plan-icon" style="color:${p.color}"><i class="fa-solid ${p.icon}"></i></div>
+                    <div class="plan-info">
+                        <p class="plan-name">${p.label}</p>
+                        <p class="plan-duration"><i class="fa-regular fa-clock" style="font-size:8px;margin-right:3px"></i>${p.duration}</p>
+                    </div>
+                    <div class="plan-price-col">
+                        <p class="plan-price" style="color:${p.color}">${p.price}</p>
+                        ${p.old ? `<p class="plan-old">${p.old}</p>` : ''}
+                    </div>
+                    <span class="plan-badge-pill" style="background:${p.color};color:${['SALE','VIP'].includes(p.badge)?'#0f172a':'white'}">${p.badge}</span>
+                </div>
+            `).join('');
+        }
+        function closeKeyModal() {
+            document.getElementById('keyModalOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function handleKeyOverlay(e) {
+            if (e.target === document.getElementById('keyModalOverlay')) closeKeyModal();
+        }
+        function selectKeyPlan(idx) {
+            _selPlan = idx;
+            document.querySelectorAll('#keyPlanList .plan-card').forEach((c,i) => c.classList.toggle('selected', i===idx));
+            const p = _curPlans[idx];
+            document.getElementById('keyBuyText').textContent = 'Mua ' + p.label + ' – ' + p.price;
+            document.getElementById('keyBuyBtn').disabled = false;
+        }
+        async function doKeyBuy() {
+            if (_selPlan < 0 || !_curPlans.length) return;
+            const p = _curPlans[_selPlan];
+            if (!p.price_raw) { alert('Gói key này chưa có giá. Liên hệ admin!'); return; }
+
+            const prefix  = PAYMENT_CFG.prefix || 'NXLMOD';
+            const content = prefix + Math.floor(Math.random() * 900000 + 100000);
+
+            document.getElementById('keyBuyBtn').disabled = true;
+            document.getElementById('keyBuyText').textContent = 'Đang tạo đơn...';
+
+            const fd = new FormData();
+            fd.append('game_key', p.game_key);
+            fd.append('plan_id',  p.plan_id);
+            fd.append('amount',   p.price_raw);
+            fd.append('content',  content);
+            const res = await fetch('api/create_order.json', { method:'POST', body:fd }).then(r=>r.json()).catch(()=>null);
+
+            document.getElementById('keyBuyBtn').disabled = false;
+            document.getElementById('keyBuyText').textContent = 'Mua ' + p.label + ' – ' + p.price;
+
+            if (!res || !res.ok) { alert(res?.msg || 'Lỗi tạo đơn!'); return; }
+            _orderId = res.order_id;
+            closeKeyModal();
+            showKeyQR(content, p.price_raw, p);
+            startKeyPoll(res.order_id);
+        }
+
+        /* ── QR ── */
+        let _beforeUnloadHandler = null;
+        function showKeyQR(content, amount, plan) {
+            const cfg = PAYMENT_CFG;
+            document.getElementById('kqrImg').src = `https://img.vietqr.io/image/${cfg.bank_code}-${cfg.account_no}-compact.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(cfg.account_name)}`;
+            document.getElementById('kqrBank').textContent    = cfg.bank_name;
+            document.getElementById('kqrAmount').textContent  = Number(amount).toLocaleString('vi-VN') + 'đ';
+            document.getElementById('kqrContent').textContent = content;
+            document.getElementById('kqrPlan').textContent    = plan.label;
+            document.getElementById('kqrStatus').className    = 'kqr-status waiting';
+            document.getElementById('kqrStatus').innerHTML    = '<i class="fa-solid fa-spinner fa-spin" style="margin-right:6px"></i>Đang chờ thanh toán...';
+            document.getElementById('kqrKeyBox').style.display = 'none';
+            document.getElementById('kqrWarn').classList.add('show');
+            document.getElementById('kqrOverlay').style.display = 'flex';
+            startKqrCountdown(15 * 60);
+            _beforeUnloadHandler = (e) => { e.preventDefault(); e.returnValue = 'Đừng tải lại trang!'; };
+            window.addEventListener('beforeunload', _beforeUnloadHandler);
+        }
+        function closeKeyQR() {
+            clearInterval(_pollTimer); clearInterval(_cdTimer);
+            document.getElementById('kqrOverlay').style.display = 'none';
+            document.getElementById('kqrWarn').classList.remove('show');
+            if (_beforeUnloadHandler) { window.removeEventListener('beforeunload', _beforeUnloadHandler); _beforeUnloadHandler = null; }
+        }
+        function startKqrCountdown(sec) {
+            clearInterval(_cdTimer); let s2 = sec;
+            const cd = document.getElementById('kqrTimer');
+            function tick() {
+                const mm = String(Math.floor(s2/60)).padStart(2,'0'), ss = String(s2%60).padStart(2,'0');
+                cd.textContent = mm+':'+ss;
+                if (s2-- <= 0) { clearInterval(_cdTimer); cd.textContent='00:00'; }
+            } tick(); _cdTimer = setInterval(tick, 1000);
+        }
+        function startKeyPoll(orderId) {
+            clearInterval(_pollTimer);
+            _pollTimer = setInterval(async () => {
+                const rd = await fetch('api/check_orderd5d8.json?order_id='+encodeURIComponent(orderId)).then(r=>r.json()).catch(()=>null);
+                if (!rd) return;
+                if (rd.status === 'paid') {
+                    clearInterval(_pollTimer); clearInterval(_cdTimer);
+                    if (_beforeUnloadHandler) { window.removeEventListener('beforeunload', _beforeUnloadHandler); _beforeUnloadHandler = null; }
+                    document.getElementById('kqrWarn').classList.remove('show');
+                    document.getElementById('kqrStatus').className = 'kqr-status success';
+                    document.getElementById('kqrStatus').innerHTML = '✅ Thanh toán thành công!';
+                    document.getElementById('kqrKeyVal').textContent = rd.key || '';
+                    document.getElementById('kqrKeyBox').style.display = 'block';
+                } else if (rd.status === 'expired' || rd.status === 'no_stock') {
+                    clearInterval(_pollTimer);
+                    if (_beforeUnloadHandler) { window.removeEventListener('beforeunload', _beforeUnloadHandler); _beforeUnloadHandler = null; }
+                    document.getElementById('kqrWarn').classList.remove('show');
+                    const ed = document.getElementById('kqrStatus');
+                    ed.className = 'kqr-status error';
+                    ed.innerHTML = rd.status==='no_stock' ? '⚠️ Kho key hết, liên hệ admin!' : '⏳ Đơn hết hạn (15 phút).';
+                }
+            }, 5000);
+        }
+        function copyKey() {
+            const key = document.getElementById('kqrKeyVal').textContent;
+            if (!key) return;
+            navigator.clipboard.writeText(key).then(() => {
+                const b = document.getElementById('kqrCopyBtn');
+                b.textContent = '✅ Đã sao chép!'; b.classList.add('copied');
+                setTimeout(() => { b.textContent = '📋 Sao chép'; b.classList.remove('copied'); }, 2000);
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = key; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+                const b = document.getElementById('kqrCopyBtn');
+                b.textContent = '✅ Đã sao chép!'; b.classList.add('copied');
+                setTimeout(() => { b.textContent = '📋 Sao chép'; b.classList.remove('copied'); }, 2000);
+            });
+        }
+        window.addEventListener('popstate', closeKeyModal);
+    </script>
+
+    <!-- QR PAYMENT MODAL -->
+    <style>
+        #kqrOverlay { position:fixed;inset:0;z-index:950;background:rgba(4,5,15,0.88);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:16px; }
+        .kqr-box { background:linear-gradient(180deg,#0d1130,#07091a);border:1px solid rgba(255,255,255,.12);border-radius:26px;width:100%;max-width:420px;padding:28px 22px;box-shadow:0 32px 80px rgba(0,0,0,.7); }
+        .kqr-title { font-size:15px;font-weight:800;text-align:center;color:#f1f5f9;margin-bottom:4px; }
+        .kqr-sub   { font-size:11px;color:#64748b;text-align:center;margin-bottom:18px; }
+        .kqr-img   { display:flex;justify-content:center;margin-bottom:16px; }
+        .kqr-img img { width:200px;height:200px;border-radius:16px;border:3px solid rgba(99,102,241,.4);background:#fff;padding:6px;box-shadow:0 8px 32px rgba(99,102,241,.2); }
+        .kqr-info  { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;margin-bottom:14px; }
+        .kqr-row   { display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:12.5px; }
+        .kqr-row:not(:last-child) { border-bottom:1px solid rgba(255,255,255,.05); }
+        .kqr-lbl   { color:#64748b;font-weight:600; }
+        .kqr-val   { color:#f1f5f9;font-weight:800;text-align:right; }
+        .kqr-val.purple { color:#a78bfa;font-size:13px;letter-spacing:.5px; }
+        .kqr-val.green  { color:#4ade80;font-size:15px; }
+        .kqr-cd    { text-align:center;font-size:11px;color:#64748b;margin-bottom:12px; }
+        .kqr-cd span { color:#fbbf24;font-weight:800; }
+        .kqr-status { text-align:center;padding:12px;border-radius:12px;font-size:13px;font-weight:700;margin-bottom:12px;display:none; }
+        .kqr-status.waiting { background:rgba(99,102,241,.1);color:#818cf8;border:1px solid rgba(99,102,241,.2);display:block; }
+        .kqr-status.success { background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.2);display:block; }
+        .kqr-status.error   { background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2);display:block; }
+        .kqr-key-box { background:rgba(74,222,128,.08);border:1.5px solid rgba(74,222,128,.25);border-radius:14px;padding:16px;text-align:center;margin-bottom:14px;display:none; }
+        .kqr-key-box p { font-size:10px;font-weight:700;color:#64748b;letter-spacing:1px;margin-bottom:6px; }
+        .kqr-key-val { font-family:monospace;font-size:17px;font-weight:900;color:#4ade80;word-break:break-all;letter-spacing:1px; }
+        .kqr-close { width:100%;padding:13px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#94a3b8;font-size:13px;font-weight:700;cursor:pointer;transition:.2s; }
+        .kqr-close:hover { background:rgba(255,255,255,.14);color:#f1f5f9; }
+        .kqr-warn { background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:9px 14px;margin-bottom:12px;font-size:11px;font-weight:700;color:#fbbf24;text-align:center;display:none; }
+        .kqr-warn.show { display:block; }
+        .kqr-key-row { display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap; }
+        .kqr-copy-btn { background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);color:#4ade80;border-radius:10px;padding:7px 14px;font-size:11px;font-weight:800;cursor:pointer;transition:.2s;white-space:nowrap; }
+        .kqr-copy-btn:hover { background:rgba(74,222,128,.28); }
+        .kqr-copy-btn.copied { background:rgba(74,222,128,.3);color:#fff;border-color:rgba(74,222,128,.6); }
+    </style>
+    <div id="kqrOverlay">
+        <div class="kqr-box">
+            <p class="kqr-title">💳 Quét QR để thanh toán</p>
+            <p class="kqr-sub">Chuyển khoản đúng nội dung — key gửi tự động</p>
+            <div class="kqr-img"><img id="kqrImg" src="#" alt="QR"></div>
+            <div class="kqr-info">
+                <div class="kqr-row"><span class="kqr-lbl">Ngân hàng</span><span class="kqr-val" id="kqrBank"></span></div>
+                <div class="kqr-row"><span class="kqr-lbl">Số tiền</span><span class="kqr-val green" id="kqrAmount"></span></div>
+                <div class="kqr-row"><span class="kqr-lbl">Nội dung CK</span><span class="kqr-val purple" id="kqrContent"></span></div>
+                <div class="kqr-row"><span class="kqr-lbl">Gói</span><span class="kqr-val" id="kqrPlan"></span></div>
+            </div>
+            <div class="kqr-cd">⏳ Hết hạn sau: <span id="kqrTimer">15:00</span></div>
+            <div class="kqr-warn" id="kqrWarn">⚠️ ĐỪNG TẢI LẠI TRANG — Giao dịch đang xử lý, tải lại sẽ mất key!</div>
+            <div class="kqr-status" id="kqrStatus"></div>
+            <div class="kqr-key-box" id="kqrKeyBox">
+                <p>🔑 KEY CỦA BẠN — Lưu lại ngay!</p>
+                <div class="kqr-key-row">
+                    <div class="kqr-key-val" id="kqrKeyVal"></div>
+                    <button class="kqr-copy-btn" id="kqrCopyBtn" onclick="copyKey()">📋 Sao chép</button>
+                </div>
+            </div>
+            <button class="kqr-close" onclick="closeKeyQR()">Xóng / Đóng</button>
+        </div>
+    </div>
+</body>
+
+<!-- Mirrored from shophama.site/taigame/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Apr 2026 11:56:33 GMT -->
+</html>

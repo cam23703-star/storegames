@@ -1,0 +1,13 @@
+HTTrack3.49-6 launched on Wed, 22 Apr 2026 18:54:34 at https://shophama.site/
+(httrack https://shophama.site/ -O /storage/emulated/0/website_clone )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+18:56:41	Error: 	"Not Found" (404) at link https://shophama.site/resources/images/loader.gif (from https://shophama.site/resources/css/backend.css?v=1.0.0)
+18:56:41	Error: 	"Not Found" (404) at link https://shophama.site/resources/images/dark-loader.gif (from https://shophama.site/resources/css/backend.css?v=1.0.0)
+
+HTTrack Website Copier/3.49-6 mirror complete in 2 minutes 27 seconds : 81 links scanned, 78 files written (8413854 bytes overall) [5948825 bytes received at 40468 bytes/sec], 3317779 bytes transferred using HTTP compression in 95 files, ratio 23%, 9.6 requests per connection
+(2 errors, 0 warnings, 0 messages)
